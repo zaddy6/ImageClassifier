@@ -40,6 +40,39 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
+
+    result_dict = dict()
+
+    fileName = listdir(image_dir)
+
+    pet_labels = []
+
+    for files in fileName:
+
+
+        pet_name_list = files.lower().split('_')
+        pet = ""
+        for name in pet_name_list:
+            if name.isalpha():
+                pet += name + " "
+        pet_labels.append(pet.strip())
+
+
+
+
+
+    # print(pet_labels)
+
+    for idx in range(0, len(fileName)):
+        if fileName[idx] not in result_dict:
+            result_dict[fileName[idx]] = [pet_labels[idx]]
+        else:
+            print("**Warning: Key=", fileName[idx], "already exist in result dict with Value=",
+                  result_dict[fileName[idx]])
+
+    for key in result_dict:
+        print("Filename", key, " Pet label=", result_dict[key][0])
+
     # Replace None with the results_dic dictionary that you created with this
     # function
-    return None
+    return result_dict
