@@ -70,11 +70,16 @@ def classify_images(images_dir, results_dic, model):
 
     for filename, label in results_dic.items():
 
-        image_classification = classifier(images_dir, model)
+        image_classification = classifier(images_dir + filename, model).lower().strip()
+
+        if label[0] in image_classification:
+            results_dic[filename] = [label[0], image_classification, 1]
+        else:
+            results_dic[filename] = [label[0], image_classification, 0]
 
 
 
 
 
 
-    None 
+    # None

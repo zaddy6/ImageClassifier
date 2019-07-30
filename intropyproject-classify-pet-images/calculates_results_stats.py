@@ -69,5 +69,46 @@ def calculates_results_stats(results_dic):
                      on how to calculate the counts and statistics.
     """        
     # Replace None with the results_stats_dic dictionary that you created with 
-    # this function 
-    return None
+    # this function
+
+    results_stats_dic = dict()
+
+    results_stats_dic['n_dogs_img'] = 0
+    results_stats_dic['n_match'] = 0
+    results_stats_dic['n_correct_dogs'] = 0
+    results_stats_dic['n_correct_notdogs'] = 0
+    results_stats_dic['n_correct_breed'] = 0
+
+    for key in results_dic:
+
+        if results_dic[key][2] == 1:
+            results_stats_dic['n_match'] += 1
+        # Pet Image Label is a Dog - counts number of dog images
+        if results_dic[key][3] == 1:
+            results_stats_dic['n_dogs_img'] += 1
+
+            # Classifier classifies image as Dog (& pet image is a dog)
+            # counts number of correct dog classifications
+            if results_dic[key][4] == 1:
+                results_stats_dic['n_correct_dogs'] += 1
+                #Not correctly classified dogs
+        else:
+            if results_dic[key][3] == 0:
+                if results_dic[key][3] == 0:
+                    results_stats_dic['n_correct_notdogs'] += 1
+
+        if results_dic[key][3] == 1:
+            if results_dic[key][2] == 1:
+                results_stats_dic['n_correct_breed'] += 1
+
+    results_stats_dic['pct_correct_dogs'] = results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img'] * 100.00;
+
+    results_stats_dic['n_images'] = len(results_dic)
+
+    results_stats_dic['n_notdogs_img'] = (results_stats_dic['n_images'] -
+                                          results_stats_dic['n_dogs_img'])
+
+
+
+
+    return results_stats_dic
