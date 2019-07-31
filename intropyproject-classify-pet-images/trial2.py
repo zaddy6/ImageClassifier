@@ -9,8 +9,8 @@ with open(dogfile) as file:
 
 nmx = 'maltese'
 
-if nmx in dognames_dic.keys():
-    print('yassss')
+# if nmx in dognames_dic.keys():
+#     # print('yassss')
 
 # print(dognames_dic['chihuahua'])
 # print(dognames_dic.items())
@@ -19,7 +19,9 @@ if nmx in dognames_dic.keys():
 dTest = {
     'maltise': ['car', 'house', 2]
 }
-print(dTest['maltise'][1])
+# print(dTest['maltise'][1])
 
-for key, car in dTest.items():
-    print(car[1])
+for key in dTest:
+    dTest[key].extend((1))
+
+print(dTest.items())
